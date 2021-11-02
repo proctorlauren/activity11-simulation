@@ -119,9 +119,25 @@ This function should produce a dataset with `n` rows.
 You should **not** use the default parameter options for these distributions (e.g., your Normal data should not have a mean of 0 or a standard deviation of 1).
 Test your function with `n = 30` and `n = 1000`.
 
-
-
-
+```{r}
+generate_n_samples <- function(n) {
+  norm_samp <- rnorm(n = n, mean = 45, sd = 5)
+    
+  exp_samp <- rexp(n = n, rate = .05)
+    
+  chisq_test <- rchisq(n = n, df = 3)
+    
+  uniform_samp <- runif(n = n, min = 0, max = 10)
+  
+  tibble::tibble(
+    norm_samp,
+    exp_samp,
+    chisq_test,
+    uniform_samp
+  )
+}
+generate_n_samples(n = 30)
+```
 Keep the following information in mind for the rest of this activity.
 The mean and standard deviation for each of the general distributions we are using in this activity are (using the R function arguments):
 
@@ -142,6 +158,7 @@ These are the "population values".
 | Uniform      |            |            |
 
 
+
 Below I provide you with a function that calculates the sample mean for each column/distribution.
 
 ```{r sample_mean}
@@ -156,6 +173,9 @@ Then, use this function in addition to your multiple distribution sample generat
 Discuss how the means compares for each distribution.
 Note that it doesn't make sense to compare means/standard deviations across the distributions.
 
+```{r}
+sample_mean(generate_n_samples(n=30))
+```
 
 
 
